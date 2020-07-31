@@ -1,0 +1,68 @@
+# read a mutation in the form of a string.
+
+def mutation_reader_user():
+    # User chooses to enter a mutation instead of reading it from a file.
+    mutation_input = input("Please enter the mutation: ")
+    reference_sequence = reference_sequence_finder(mutation_input)
+    print(reference_sequence)
+
+    return
+
+
+def mutation_reader_file(file_name):
+    # todo read from file. Delete following after read from file is complete.
+    return
+
+
+def reference_sequence_finder(mutation_input):
+    # all the possible types of reference sequences are placed in a library.
+    # Only tags found in the mutation will be True.
+    reference_sequence = {
+        mutation_input.lower().find("c.") != -1: "coding DNA",
+        mutation_input.lower().find("g.") != -1: "genomic DNA",
+        mutation_input.lower().find("m.") != -1: "mitochondrial DNA",
+        mutation_input.lower().find("r.") != -1: "RNA",
+        mutation_input.lower().find("p.") != -1: "protein",
+    }
+    # Since dictionary replaces the value with newest value if one already have the same key,
+    # if two does not match, it means more than one data type appears in mutation.
+    reference_sequence_inverse = {
+        mutation_input.lower().find("p.") != -1: "protein",
+        mutation_input.lower().find("r.") != -1: "RNA",
+        mutation_input.lower().find("m.") != -1: "mitochondrial DNA",
+        mutation_input.lower().find("g.") != -1: "genomic DNA",
+        mutation_input.lower().find("c.") != -1: "coding DNA",
+    }
+    if reference_sequence.get(True, "none given") == reference_sequence_inverse.get(True, "none given"):
+        return reference_sequence.get(True, "none given");
+    else:
+        return "error: more than one reference sequence type detected. Please check your mutation for typos."
+
+
+def mutation_type_finder(mutation_input):
+    # all the possible types of mutations are placed in a library.
+    # Only tags found in the mutation will be True.
+    reference_sequence = {
+        mutation_input.lower().find("c.") != -1: "coding DNA",
+        mutation_input.lower().find("g.") != -1: "genomic DNA",
+        mutation_input.lower().find("m.") != -1: "mitochondrial DNA",
+        mutation_input.lower().find("r.") != -1: "RNA",
+        mutation_input.lower().find("p.") != -1: "protein",
+    }
+    # Since dictionary replaces the value with newest value if one already have the same key,
+    # if two does not match, it means more than one data type appears in mutation.
+    reference_sequence_inverse = {
+        mutation_input.lower().find("p.") != -1: "protein",
+        mutation_input.lower().find("r.") != -1: "RNA",
+        mutation_input.lower().find("m.") != -1: "mitochondrial DNA",
+        mutation_input.lower().find("g.") != -1: "genomic DNA",
+        mutation_input.lower().find("c.") != -1: "coding DNA",
+    }
+    if reference_sequence.get(True, "none given") == reference_sequence_inverse.get(True, "none given"):
+        return reference_sequence.get(True, "none given");
+    else:
+        return "error: more than one reference sequence type detected. Please check your mutation for typos."
+    return
+
+
+mutation_reader_user()
